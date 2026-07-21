@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -44,6 +45,19 @@ export function RegisterForm() {
             autoComplete="email" 
             required 
           />
+        </div>
+
+        <div className="grid gap-2">
+          <Label htmlFor="profession">Profession</Label>
+          <Select>
+            <SelectTrigger className="h-11 px-4 form-inside">
+              <SelectValue placeholder="Select your profession" />
+            </SelectTrigger>
+            <SelectContent className="form-inside">
+              <SelectItem value="student" className="cursor-pointer">Student</SelectItem>
+              <SelectItem value="developer" className="cursor-pointer">Developer</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="grid gap-2">
