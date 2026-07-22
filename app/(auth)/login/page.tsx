@@ -3,7 +3,7 @@ import { LoginForm } from '../_components/LoginFrom'
 
 const loginPage = () => {
   return (
-    <main className="flex min-h-screen w-full form">
+    <div className="flex min-h-screen w-full form">
       {/* Form side */}
       <div className="flex flex-1 items-center justify-center px-6 py-12 sm:px-12">
         <div className="w-full max-w-md">
@@ -40,7 +40,7 @@ const loginPage = () => {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   )
 }
 
