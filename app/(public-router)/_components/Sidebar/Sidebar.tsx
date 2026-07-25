@@ -1,12 +1,13 @@
 import React from 'react'
+import SidebarHeading from '../Sidebar_heading/SidebarHeading'
 
 const SidebarPage = () => {
   return (
-    <aside className="w-72 border-r border-white/10">
+    <div className="w-60 border-r border-r-white/10 padding-15px">
       <div className="heading">
-        
+        <SidebarHeading />
       </div>
-    </aside>
+    </div>
   )
 }
 

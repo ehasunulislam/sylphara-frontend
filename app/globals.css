@@ -200,3 +200,58 @@ body{
   padding: 0px 15px 0px 15px;
 }
 /* register page end */
+
+
+/* custome padding */
+.padding-15px {
+  padding: 15px
+}
+
+/* sidebar start */
+.btn-newchat{
+  display:flex; 
+  align-items:center; 
+  gap:9px;
+  width:100%; 
+  padding: 11px 14px; 
+  margin-bottom: 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(139,92,246,.18), rgba(59,130,246,.10));
+  border: 1px solid rgba(139,92,246,.35);
+  color: var(--text); font-weight:600; font-size: 13.5px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 0 8px 20px -12px rgba(139,92,246,.5);
+  transition: all .2s var(--ease);
+  cursor: pointer;
+  margin: 15px 0 15px 0;
+}
+
+.btn-newchat:hover{ 
+  border-color: rgba(139,92,246,.6); 
+  box-shadow: 0 0 0 1px rgba(255,255,255,.05) inset, 0 10px 26px -10px rgba(139,92,246,.65); transform: translateY(-1px); 
+}
+
+.search-box{
+  display:flex; 
+  align-items:center; 
+  gap:8px;
+  background: var(--glass); 
+  border:1px solid var(--glass-border);
+  border-radius: var(--radius-md); 
+  padding: 9px 12px; 
+  margin-bottom: 18px;
+}
+
+.search-box input{
+  background:transparent; 
+  border:none; 
+  outline:none; 
+  color:var(--text); 
+  font-size:13px; 
+  width:100%;
+}
+
+.search-box input::placeholder{ 
+  color: var(--text-faint); 
+  outline: none;
+}
+/* sidebar end */
