@@ -367,10 +367,10 @@ body{
   flex:1; 
 }
 
-.chat-item:hover{ 
+/* .chat-item:hover{ 
   background: var(--glass-strong); 
   color: var(--text); 
-}
+} */
 
 .chat-item.active{
   background: linear-gradient(90deg, rgba(139,92,246,.16), rgba(59,130,246,.06));
@@ -398,3 +398,4 @@ body{
   opacity:1; 
 }
 /* sidebar end */
+

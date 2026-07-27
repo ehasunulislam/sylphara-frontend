@@ -9,7 +9,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SidebarPage />
       </div>
 
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 overflow-hidden relative">
         {/* Mobile Header */}
         <div className="md:hidden p-4">
           <MobileSidebar />
