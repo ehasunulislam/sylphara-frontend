@@ -76,7 +76,7 @@ const ChatInput = ({conversationId, setConversationId, setMessages}: Props) => {
 
   return (
     <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
-      <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl px-4 py-3 w-full max-w-3xl chat-item">
+      <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl px-4 py-3 w-full max-w-2xl chat-item">
 
         <button className="h-12 w-12 flex items-center justify-center rounded-full border border-white/10 cursor-pointer">
           <Paperclip size={20} />
