@@ -1,9 +1,8 @@
-// import { Button } from '@/components/ui/button'
-// import { ButtonGroup, ButtonGroupSeparator } from '@/components/ui/button-group'
 import { Input } from '@/components/ui/input'
-import { Plus, Search } from 'lucide-react'
+import { Search } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import NewChat from './NewChat'
 
 const SidebarHeading = () => {
   return (
@@ -20,18 +19,7 @@ const SidebarHeading = () => {
       </section>
 
       <section className='mt-6'>
-        {/* <ButtonGroup className='w-full '>
-            <Button size="icon" variant="secondary">
-                <Plus />
-            </Button>
-            <Button variant="secondary">Button</Button>
-            <ButtonGroupSeparator />
-        </ButtonGroup> */}
-
-        <button className="btn-newchat">
-            <Plus />
-            New chat
-        </button>
+          <NewChat />
       </section>
 
       <section>

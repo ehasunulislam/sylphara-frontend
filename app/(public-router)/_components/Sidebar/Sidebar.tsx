@@ -1,7 +1,7 @@
 import React from 'react'
-import SidebarHeading from '../Sidebar_heading/SidebarHeading'
-import SidebarProfile from '../Sidebar-Profile/SidebarProfile'
-import SidebarHistory from '../Sidebar_history/SidebarHistory'
+import SidebarHeading from './Sidebar_heading/SidebarHeading'
+import SidebarProfile from './Sidebar-Profile/SidebarProfile'
+import SidebarHistory from './Sidebar_history/SidebarHistory'
 
 const SidebarPage = () => {
   return (
