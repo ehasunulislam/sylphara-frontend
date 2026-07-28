@@ -1,24 +1,16 @@
 "use client"
 
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const NewChat = () => {
-
-    const handleCreateConversation = async () => {
-    try {
-      console.log("create conversation");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <div>
-        <button className="btn-newchat" onClick={handleCreateConversation}>
-            <Plus />
-            New chat
-        </button>
+      <Link href="/" className="btn-newchat">
+        <Plus />
+        New chat
+      </Link>
     </div>
   )
 }
