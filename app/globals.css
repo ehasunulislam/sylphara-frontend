@@ -455,3 +455,125 @@ body{
   padding: 0;
   color: inherit;
 }
+
+
+/* ============================= */
+/* CHAT UI */
+/* ============================= */
+
+.chat-wrapper {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 32px 24px 160px;
+}
+
+.chat-message {
+  display: flex;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.assistant {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+}
+
+.chat-bubble.user {
+  max-width: 720px;
+  background: rgba(124,58,237,.18);
+  border-color: rgba(124,58,237,.25);
+  padding: 14px 18px;
+}
+
+.chat-bubble.assistant {
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255,255,255,.04);
+  padding: 22px 24px;
+}
+
+/* Markdown */
+
+.chat-markdown {
+  line-height: 1.8;
+}
+
+.chat-markdown > *:first-child {
+  margin-top: 0;
+}
+
+.chat-markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.chat-markdown p {
+  margin: 0.9rem 0;
+}
+
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 1rem 0;
+}
+
+.chat-markdown li {
+  margin: .35rem 0;
+}
+
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3 {
+  margin-top: 1.5rem;
+  margin-bottom: .8rem;
+}
+
+.chat-markdown pre {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.chat-markdown code {
+  border-radius: 6px;
+}
+
+/* Copy Button */
+
+.message-actions {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Smooth Scroll */
+
+.chat-scroll {
+  scroll-behavior: smooth;
+}
+
+.chat-markdown pre {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.chat-markdown code {
+  font-size: 14px;
+}
+
+.chat-markdown pre code {
+  background: transparent !important;
+}
