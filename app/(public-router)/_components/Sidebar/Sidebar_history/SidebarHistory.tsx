@@ -1,23 +1,48 @@
-import { MessageSquare } from 'lucide-react'
-import React from 'react'
+"use client";
+
+import { MessageSquare } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getAllConversation } from "@/app/(public-router)/_action/Conversation/getAllConversation";
+import { IConversation } from "@/components/Interface/Conversation.interface";
+import Link from "next/link";
+
 
 const SidebarHistory = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["conversations"],
+    queryFn: getAllConversation,
+  });
+
+
+  const conversations: IConversation[] =  data?.data?.getConversations || [];
+
+  if (isLoading) {
+    return (
+      <div className="side-scroll">
+        <div className="side-label">
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div>
-       <div className="side-scroll">
-            <div className="side-label">Today</div>
-                <div className="chat-item active" data-name="Roadmap for backend engineer">
-                    <MessageSquare />
-                    <span>Roadmap for backend engineer</span>
-                </div>
+    <div className="side-scroll">
+      {conversations.map((conversation) => (
+         <Link
+          key={conversation.id}
+          href={`/${conversation.id}`}
+          className="chat-item"
+        >
+          <MessageSquare size={16} />
 
-                <div className="chat-item" data-name="Fix React useEffect loop">
-                    <MessageSquare />
-                    <span>Fix React useEffect loop</span>
-                </div>
-            </div>
+          <span className="truncate">
+            {conversation.title}
+          </span>
+        </Link>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default SidebarHistory
+export default SidebarHistory;

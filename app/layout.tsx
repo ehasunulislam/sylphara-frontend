@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
+import ReactQueryProvider from "./ReactQueryProvider";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -18,13 +19,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={cn("h-full", "antialiased", "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <Toaster position="top-right" />
-        <div className="ambient">
-          <div className="orb orb-1" />
-          <div className="orb orb-2" />
-          <div className="orb orb-3" />
-        </div>
-        {children}
+        <ReactQueryProvider>
+          <Toaster position="top-right" />
+          <div className="ambient">
+            <div className="orb orb-1" />
+            <div className="orb orb-2" />
+            <div className="orb orb-3" />
+          </div>
+          {children}
+        </ReactQueryProvider>
       </body>
     </html>
   );
