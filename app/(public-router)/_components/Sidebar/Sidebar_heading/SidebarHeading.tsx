@@ -1,10 +1,16 @@
-import { Input } from '@/components/ui/input'
-import { Search } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import NewChat from './NewChat'
+import SearchConversation from './SearchConversation'
 
-const SidebarHeading = () => {
+type Props = {
+  search: string;
+  setSearch: React.Dispatch<
+    React.SetStateAction<string>
+  >;
+};
+
+const SidebarHeading = ({search, setSearch}: Props) => {
   return (
     <div>
       <section className='flex gap-4 items-center'>
@@ -23,10 +29,10 @@ const SidebarHeading = () => {
       </section>
 
       <section>
-        <div className="search-box">
-            <Search />
-            <Input type="text" placeholder="Search conversations" className='border-0 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none' />
-        </div>
+        <SearchConversation 
+          search={search}
+          setSearch={setSearch}
+        />
       </section>
     </div>
   )
