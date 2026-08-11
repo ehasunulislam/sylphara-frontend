@@ -35,6 +35,13 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
           message.slice(0, 40)
         );
 
+        console.log("conversation =", conversation);
+
+        if (!conversation?.data?.createdConversation) {
+          throw new Error("Conversation creation failed");
+        }
+
+
         currentConversationId =
           conversation.data.createdConversation.id;
 

@@ -577,3 +577,31 @@ body{
 .chat-markdown pre code {
   background: transparent !important;
 }
+
+/* profile card design */
+.page-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.page-center {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card-wrapper {
+  width: 100%;
+  max-width: 1400px;
+}
+
+.social-margin {
+  margin-top: 20px;
+}
+
+.profile-badge-padding{
+  padding: 5px
+}

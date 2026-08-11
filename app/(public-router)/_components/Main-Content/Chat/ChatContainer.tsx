@@ -31,9 +31,7 @@ export default function ChatContainer({
 
     const loadMessages = async () => {
       try {
-        const res = await getAllMessage(
-          conversationId
-        );
+        const res = await getAllMessage(conversationId);
 
         setMessages(res.data.messages);
       } catch (error) {
