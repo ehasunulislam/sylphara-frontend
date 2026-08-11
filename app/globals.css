@@ -605,3 +605,109 @@ body{
 .profile-badge-padding{
   padding: 5px
 }
+
+/* =========================
+   PROFILE MODAL
+========================= */
+
+.profile-modal {
+  max-width: 600px !important;
+
+  background: rgba(12, 12, 18, 0.95) !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(25px);
+
+  border-radius: 24px;
+
+  padding: 32px;
+}
+
+.profile-modal-title {
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: white;
+
+  margin-bottom: 20px;
+}
+
+.profile-modal-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.profile-input-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: white;
+}
+
+.profile-input {
+  height: 52px !important;
+
+  border-radius: 14px !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+
+  background: rgba(255, 255, 255, 0.04) !important;
+
+  color: white !important;
+}
+
+.profile-input::placeholder {
+  color: rgb(113 113 122);
+}
+
+.profile-input:focus {
+  box-shadow: none !important;
+
+  border-color: rgb(99 102 241) !important;
+}
+
+.profile-modal-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  height: 46px;
+
+  padding: 0 20px;
+
+  border-radius: 12px;
+}
+
+.save-btn {
+  height: 46px;
+
+  padding: 0 20px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #8b5cf6
+  ) !important;
+
+  border: none !important;
+}
+
+.save-btn:hover {
+  opacity: 0.9;
+}

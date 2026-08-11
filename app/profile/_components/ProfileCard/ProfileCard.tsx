@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+import EditProfileModal from "./EditProfileModal";
 
 type Props = {
   profile: {
@@ -22,6 +24,8 @@ type Props = {
 };
 
 const ProfileCard = ({ profile }: Props) => {
+  const [openModal, setModal] = useState(false);  
+  
   const initials =
     profile.user.name
       ?.split(" ")
@@ -48,18 +52,7 @@ const ProfileCard = ({ profile }: Props) => {
           <div className="flex justify-center">
             <div className="relative">
               {/* Dotted Ring */}
-              <div
-                className="
-                  h-80
-                  w-[320px]
-                  rounded-full
-                  border
-                  border-dashed
-                  border-white/15
-                  flex
-                  items-center
-                  justify-center
-                "
+              <div className=" h-80 w-[320px] rounded-full border border-dashed border-white/15 flex items-center justify-center"
               >
                 {profile.user.profilePhoto ? (
                   <Image
@@ -67,80 +60,24 @@ const ProfileCard = ({ profile }: Props) => {
                     alt="user name"
                     width={180}
                     height={180}
-                    className="
-                      h-45
-                      w-45
-                      rounded-full
-                      object-cover
-                      border
-                      border-white/10
-                    "
+                    className="h-45 w-45 rounded-full object-cover border  border-white/10"
                   />
                 ) : (
                   <div
-                    className="
-                      h-45
-                      w-45
-                      rounded-full
-                      bg-linear-to-br
-                      from-violet-500/40
-                      to-cyan-500/40
-                      border
-                      border-white/10
-                      flex
-                      items-center
-                      justify-center
-                      text-white
-                      text-6xl
-                      font-bold
-                    "
-                  >
+                    className=" h-45 w-45 rounded-full bg-linear-to-br  from-violet-500/40  to-cyan-500/40 border  border-white/10 flex items-center justify-center  text-white text-6xl font-bold">
                     {initials}
                   </div>
                 )}
               </div>
 
               {/* Github Floating */}
-              <div
-                className="
-                  absolute
-                  top-16
-                  left-10
-                  h-14
-                  w-14
-                  rounded-full
-                  border
-                  border-white/10
-                  bg-white/5
-                  backdrop-blur-xl
-                  flex
-                  items-center
-                  justify-center
-                  text-white
-                "
+              <div className=" absolute top-16 left-10 h-14 w-14 rounded-full border  border-white/10  bg-white/5 backdrop-blur-xl flex items-center justify-center  text-white"
               >
                 <FaGithub size={22} />
               </div>
 
               {/* Linkedin Floating */}
-              <div
-                className="
-                  absolute
-                  top-16
-                  right-10
-                  h-14
-                  w-14
-                  rounded-full
-                  border
-                  border-white/10
-                  bg-white/5
-                  backdrop-blur-xl
-                  flex
-                  items-center
-                  justify-center
-                  text-white
-                "
-              >
+              <div className=" absolute top-16 right-10 h-14 w-14 rounded-full border  border-white/10  bg-white/5 backdrop-blur-xl flex items-center justify-center  text-white">
                 <FaLinkedin size={22} />
               </div>
             </div>
@@ -179,7 +116,7 @@ const ProfileCard = ({ profile }: Props) => {
                         <h3 className="text-white">LinkedIn</h3>
 
                         <p className="text-zinc-500">
-                          {profile.linkedin ? "Connected" : "Not connected"}
+                          {profile.linkedin || "Not connected"}
                         </p>
                       </div>
                     </div>
@@ -196,7 +133,7 @@ const ProfileCard = ({ profile }: Props) => {
                         <h3 className="text-white">GitHub</h3>
 
                         <p className="text-zinc-500">
-                          {profile.github ? "Connected" : "Not connected"}
+                          {profile.github || "Not connected"}
                         </p>
                       </div>
                     </div>
@@ -204,8 +141,22 @@ const ProfileCard = ({ profile }: Props) => {
                 </div>
 
                 <div className="edit-section">
-                    <Image src="/edit.png" alt="edit btn" width={30} height={30} className="rotate-30 cursor-pointer" />
+                    <Image src="/edit.png" alt="edit btn" width={30} height={30} className="rotate-30 cursor-pointer" 
+                    onClick={() => {
+                        setModal(true)
+                    }} />
                 </div>
+
+                <EditProfileModal
+                    open={openModal}
+                    onClose={() =>
+                        setModal(false)
+                    }
+                    profile={{
+                        github: profile.github,
+                        linkedin: profile.linkedin,
+                    }}
+                />
               </section>
             </div>
 
