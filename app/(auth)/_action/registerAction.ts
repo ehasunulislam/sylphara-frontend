@@ -1,5 +1,7 @@
 // import { IRegisterUser } from "@/components/Types/auth.type";
+"use server"
 
+import { cookies } from "next/headers";
 import { RegisterFormData } from "../_components/schema/register.schema";
 
 export const registerAction = async(payload: RegisterFormData) => {
@@ -22,10 +24,24 @@ export const registerAction = async(payload: RegisterFormData) => {
             throw new Error(result.message || "Registration failed")
         }
 
+        const cookieStore = await cookies();
+    
+        cookieStore.set("aToken", result.data.accessToken, {
+            httpOnly: true,
+            sameSite: "lax",
+            path: "/"
+        });
+    
+        cookieStore.set("rToken", result.data.refreshToken, {
+            httpOnly: true,
+            sameSite: "lax",
+            path: "/",
+        });
+
         return result;
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     catch(err: any) {
-        throw new Error(err.message);
+       console.log(err.message);
     }
 } 

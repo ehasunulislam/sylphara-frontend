@@ -1,4 +1,3 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
@@ -8,9 +7,8 @@ const AUTH_ROUTES = ["/login", "/register"];
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
     const pathName = request.nextUrl.pathname;
-    const cookieStore = await cookies();
 
-    const token = cookieStore.get("aToken")?.value;
+    const token = request.cookies.get("aToken")?.value;
     const isAuthRoutes = AUTH_ROUTES.includes(pathName)
 
     if(token && isAuthRoutes) {
