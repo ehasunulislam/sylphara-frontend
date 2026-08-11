@@ -1,5 +1,6 @@
 import React from 'react'
 import { RegisterForm } from '../_components/RegisterFrom'
+import Link from 'next/link'
 
 
 const registerPage = () => {
@@ -32,9 +33,9 @@ const registerPage = () => {
 
       <p className="mt-8 text-center text-sm text-muted-foreground pt-3">
         Already have an account?{" "}
-        <a href="/login" className="font-medium text-white underline-offset-4 hover:underline">
+        <Link href="/login" className="font-medium text-white underline-offset-4 hover:underline">
           Sign in
-        </a>
+        </Link>
       </p>
     </div>
   )
