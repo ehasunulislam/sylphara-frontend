@@ -1,5 +1,6 @@
 import React from 'react'
 import { LoginForm } from '../_components/LoginFrom'
+import Link from 'next/link'
 
 const loginPage = () => {
   return (
@@ -34,9 +35,9 @@ const loginPage = () => {
 
           <p className="mt-8 text-center text-sm text-muted-foreground pt-3">
             Don&apos;t have an account?{" "}
-            <a href="/register" className="font-medium text-white underline-offset-4 hover:underline">
+            <Link href="/register" className="font-medium text-white underline-offset-4 hover:underline">
               Create one
-            </a>
+            </Link>
           </p>
         </div>
       </div>
