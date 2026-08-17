@@ -6,6 +6,7 @@ export const createChat = async(conversationId: string, message: string) => {
     const cookieStore = await cookies();
     const token = cookieStore.get("aToken")?.value;
 
+
     if (!token) {
         throw new Error("Authentication token not found.");
     }
@@ -25,5 +26,7 @@ export const createChat = async(conversationId: string, message: string) => {
         }
     );
 
-    return await res.json()
+    const data = await res.json();
+
+    return data;
 }

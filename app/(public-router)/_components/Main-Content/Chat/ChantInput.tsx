@@ -2,12 +2,12 @@
 
 import { Paperclip, SendHorizontal } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
+
 import { IMessage } from "@/components/Interface/ChatContainer.interface";
 import { createConversation } from "@/app/(public-router)/_action/Conversation/createConversation";
 import { createChat } from "@/app/(public-router)/_action/AI-Chat/createChat";
-import { useRouter } from "next/navigation";
-
-
 
 type Props = {
   conversationId: string | null;
@@ -16,10 +16,15 @@ type Props = {
   >;
 };
 
-const ChatInput = ({conversationId, setMessages}: Props) => {
+const ChatInput = ({
+  conversationId,
+  setMessages,
+}: Props) => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const handleSend = async () => {
     try {
@@ -28,30 +33,9 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
       setLoading(true);
 
       let currentConversationId = conversationId;
-
-      // First Message
-      if (!currentConversationId) {
-        const conversation = await createConversation(
-          message.slice(0, 40)
-        );
-
-        console.log("conversation =", conversation);
-
-        if (!conversation?.data?.createdConversation) {
-          throw new Error("Conversation creation failed");
-        }
-
-
-        currentConversationId =
-          conversation.data.createdConversation.id;
-
-        // setConversationId(currentConversationId);
-        router.push(`/${currentConversationId}`);
-      }
-
       const userMessage = message;
 
-      // user message instantly show
+      // Show user message instantly
       setMessages((prev) => [
         ...prev,
         {
@@ -61,6 +45,30 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
       ]);
 
       setMessage("");
+
+      // First message => create conversation
+      if (!currentConversationId) {
+        const conversation =
+          await createConversation(
+            userMessage.slice(0, 40)
+          );
+
+        if (
+          !conversation?.data?.createdConversation
+        ) {
+          throw new Error(
+            "Conversation creation failed"
+          );
+        }
+
+        currentConversationId =
+          conversation.data.createdConversation.id;
+
+        // Refresh sidebar conversations
+        await queryClient.invalidateQueries({
+          queryKey: ["conversations"],
+        });
+      }
 
       const response = await createChat(
         currentConversationId!,
@@ -72,11 +80,20 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
         {
           role: "ASSISTANT",
           content:
-            response.data.chat.assistantMessage.content,
+            response.data.chat
+              .assistantMessage.content,
         },
       ]);
+
+      // Navigate after response
+      if (!conversationId) {
+        router.push(`/${currentConversationId}`);
+      }
     } catch (error) {
-      console.error(error);
+      console.error(
+        "Chat send error:",
+        error
+      );
     } finally {
       setLoading(false);
     }
@@ -85,15 +102,16 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
   return (
     <div className="absolute bottom-6 left-0 right-0 flex justify-center px-4">
       <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-black/50 backdrop-blur-xl px-4 py-3 w-full max-w-2xl chat-item">
-
-
+        
         <button className="h-12 w-12 flex items-center justify-center rounded-full border border-white/10 cursor-pointer">
           <Paperclip size={20} />
         </button>
 
         <textarea
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) =>
+            setMessage(e.target.value)
+          }
           rows={1}
           placeholder="Message Sylphara AI..."
           className="flex-1 resize-none bg-transparent outline-none"
@@ -103,8 +121,11 @@ const ChatInput = ({conversationId, setMessages}: Props) => {
           onClick={handleSend}
           disabled={loading}
           className="
-            h-12 w-12
-            flex items-center justify-center
+            h-12
+            w-12
+            flex
+            items-center
+            justify-center
             rounded-full
             bg-blue-600
             text-white
